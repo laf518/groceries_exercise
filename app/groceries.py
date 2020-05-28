@@ -1,6 +1,6 @@
 # groceries.py
 
-#from pprint import pprint
+#from print import pprint
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -25,10 +25,42 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-print(products)
-# pprint(products)
-
 # TODO: write some Python code here to produce the desired output
 
 # COUNT THE PRODUCTS
+print()
+print("--------------")
+print("THERE ARE ", len(products), "PRODUCTS:")
+print("--------------")
 
+# SORT THE LIST IN ALPHABETICAL ORDER
+products = sorted(products, key=lambda item: item['name'])
+
+# LOOP THROUGH THE PRODUCTS AND PRINT EACH ONE
+for item in products:
+    price = item["price"]
+    print("+ ", item["name"], f"(${price:,.2f})")
+
+# CREATE A LIST OF ALL DEPARTMENTS
+departments = []
+for item in products:
+    if item["department"] not in departments:
+        departments.append(item["department"])
+
+# PLACE LIST OF DEPARTMENTS IN ALPHABETICAL ORDER
+departments = sorted(departments)
+
+# PRINT TOTAL NUMBER OF PRODUCTS FOR EACH DEPARTMENT
+print()
+print("--------------")
+print("THERE ARE ", len(departments), " DEPARTMENTS")
+print("--------------")
+for x in departments:
+    count = 0
+    for item in products:
+        if item["department"] == x:
+            count = count + 1
+    print("+ ", x.title(), f" [{count:,.0f} product(s)]")
+
+print()
+    
